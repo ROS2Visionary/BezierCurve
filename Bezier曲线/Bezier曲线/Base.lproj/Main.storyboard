@@ -102,11 +102,42 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2IX-3l-Lkg">
                                 <rect key="frame" x="60" y="593" width="307" height="31"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="2wM-Jo-OE5" eventType="valueChanged" id="siN-pW-M4e"/>
+                                </connections>
                             </slider>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="X" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h0X-eg-Oca">
+                                <rect key="frame" x="10" y="72" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Y" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eYp-g5-j8L">
+                                <rect key="frame" x="10" y="110" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyN-Be-bcJ">
+                                <rect key="frame" x="296" y="92" width="63" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="4QO-bC-52Q"/>
+                                </constraints>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPoint:" destination="2wM-Jo-OE5" eventType="touchUpInside" id="UFs-r3-xix"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8RU-zp-pRT" firstAttribute="top" secondItem="yjf-VE-3aP" secondAttribute="bottom" constant="8" id="1bL-EE-fZP"/>
+                            <constraint firstAttribute="trailing" secondItem="qyN-Be-bcJ" secondAttribute="trailing" constant="16" id="9ai-bz-AYo"/>
                             <constraint firstItem="sp7-sP-2DQ" firstAttribute="width" secondItem="yjf-VE-3aP" secondAttribute="width" id="FlV-bR-BST"/>
                             <constraint firstItem="1iv-eg-fd3" firstAttribute="width" secondItem="yjf-VE-3aP" secondAttribute="width" id="IWR-pg-Ann"/>
                             <constraint firstAttribute="trailing" secondItem="2IX-3l-Lkg" secondAttribute="trailing" constant="10" id="MGD-Xa-dij"/>
@@ -119,7 +150,9 @@
                             <constraint firstItem="2IX-3l-Lkg" firstAttribute="leading" secondItem="GCV-be-c2Z" secondAttribute="trailing" constant="10" id="gPw-W3-bEx"/>
                             <constraint firstItem="GCV-be-c2Z" firstAttribute="leading" secondItem="VD8-7J-VyK" secondAttribute="leading" constant="10" id="lGv-Ha-b8d"/>
                             <constraint firstItem="8RU-zp-pRT" firstAttribute="top" secondItem="sp7-sP-2DQ" secondAttribute="bottom" constant="8" id="mKn-d0-Pch"/>
+                            <constraint firstItem="2IX-3l-Lkg" firstAttribute="top" secondItem="qyN-Be-bcJ" secondAttribute="bottom" constant="471" id="pni-TQ-nu6"/>
                             <constraint firstItem="1iv-eg-fd3" firstAttribute="leading" secondItem="sp7-sP-2DQ" secondAttribute="trailing" constant="20" id="rd9-tt-n2D"/>
+                            <constraint firstItem="qyN-Be-bcJ" firstAttribute="top" secondItem="YBm-gi-Ngq" secondAttribute="bottom" constant="28" id="rsc-ul-CHn"/>
                             <constraint firstItem="yjf-VE-3aP" firstAttribute="leading" secondItem="1iv-eg-fd3" secondAttribute="trailing" constant="20" id="wqW-0O-xJY"/>
                             <constraint firstItem="sp7-sP-2DQ" firstAttribute="leading" secondItem="tYA-Y5-2p8" secondAttribute="trailing" constant="20" id="z2e-5U-Tvl"/>
                         </constraints>
@@ -127,11 +160,14 @@
                     <navigationItem key="navigationItem" id="Cdw-dw-TP1"/>
                     <connections>
                         <outlet property="btnConstraintW" destination="GFJ-eq-0zr" id="ssf-RZ-Bdg"/>
+                        <outlet property="confirmBtn" destination="qyN-Be-bcJ" id="6So-Hw-Ydf"/>
+                        <outlet property="xTF" destination="h0X-eg-Oca" id="EU0-br-AJL"/>
+                        <outlet property="yTF" destination="eYp-g5-j8L" id="5gt-yx-bbs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="onk-Vo-G7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175.19999999999999" y="-147.07646176911544"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="-118.29085457271366"/>
         </scene>
     </scenes>
 </document>
