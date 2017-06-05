@@ -25,9 +25,22 @@ class BezierView: UIView {
             creatPoint()
             
             creatPointView()
+            
+            addSubview(tLB)
 
         }
     }
+    
+    let tLB:UILabel = {
+    
+        let LB = UILabel(frame: CGRect(x: ScreenWith - 70, y: ScreenHeight - 100, width: 60, height: 30))
+        
+        LB.font = UIFont.systemFont(ofSize: 15.0)
+        
+        LB.text = "t:0.00"
+        
+        return LB
+    }()
     
     /// 描绘进度(0.0 ~ 1.0)
     var proportion:CGFloat = 0.0
@@ -229,6 +242,8 @@ extension BezierView {
             return
         }
         proportion = proportion + 0.01 - (1 - rate) * 0.01
+        
+        tLB.text = "t:" + String(format:"%.2f",proportion)
         setNeedsDisplay()
     }
 }
