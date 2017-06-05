@@ -87,6 +87,13 @@ class BezierView: UIView {
     }
 
     
+    
+}
+
+// MARK: - 画线相关
+extension BezierView {
+
+    
     // MARK: - 批量画线
     fileprivate func drawLines(ctx:CGContext) {
         
@@ -102,6 +109,13 @@ class BezierView: UIView {
             ctx.setStrokeColor(colorArray[pointArr.count])
             ctx.strokePath()
             
+            // 遍历,画小圆
+            for center in pointArr {
+                ctx.addArc(center: center, radius: 3, startAngle: 0, endAngle: CGFloat(M_2_PI), clockwise: true)
+                ctx.setFillColor(colorArray[pointArr.count])
+                ctx.fillPath()
+            }
+            
         } while pointArr.count != 1
         
         controlPoints.append(pointArr.first!)
@@ -111,6 +125,8 @@ class BezierView: UIView {
         ctx.strokePath()
     }
     
+
+
 }
 
 // MARK: - 计算控制点
@@ -227,28 +243,33 @@ extension BezierView {
             
             let center = (pointArray?[i])!
             
-            // 定义小圆圈
-            let dot = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            // 用于移动初始数据点
+            let rectangleVeiw = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            rectangleVeiw.isUserInteractionEnabled = true
+            rectangleVeiw.tag = i
+            
+            // 定义小圆圈 (仅显示)
+            let dot = UIView(frame: CGRect(x: 10, y: 10, width: 10, height: 10))
             dot.layer.cornerRadius = 5
             dot.layer.borderWidth = 1
             dot.layer.borderColor = UIColor.lightGray.cgColor
-            dot.tag = i
             dot.isUserInteractionEnabled = true
             
-            // 添加圆圈标记
+            // 添加圆圈标记 (仅显示)
             let textLB = UILabel(frame: CGRect(x: 10, y: 0, width: 20, height: 10))
             textLB.text = "P" + String(i)
             textLB.font = UIFont.systemFont(ofSize: 10.0)
             dot.addSubview(textLB)
             
-            addSubview(dot)
-            dot.center = center
-            dotArray.append(dot)
+            rectangleVeiw.addSubview(dot)
+            addSubview(rectangleVeiw)
+            rectangleVeiw.center = center
+            dotArray.append(rectangleVeiw)
             
             // 添加手势
             let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(movePoint(gesture:)))
             longPressGesture.minimumPressDuration = 0.1
-            dot.addGestureRecognizer(longPressGesture)
+            rectangleVeiw.addGestureRecognizer(longPressGesture)
         }
     }
     
